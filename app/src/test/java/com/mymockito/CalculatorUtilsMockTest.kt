@@ -1,8 +1,10 @@
 package com.mymockito
 
 import org.junit.Before
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
+import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
 /*
@@ -24,5 +26,13 @@ class CalculatorUtilsMockTest {
     @Before
     fun setup(){
         calculatorUtils = CalculatorUtils(operations, listener)
+    }
+
+    @Test
+    fun cacl_callCheckOrResolve_noReturn(){
+        val operation = "-5x2.5"
+        val isFromResolve = true
+        calculatorUtils.checkOrResolve(operation, isFromResolve)
+        Mockito.verify(operations).tryResolve(operation, isFromResolve, listener)
     }
 }
