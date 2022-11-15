@@ -27,8 +27,11 @@ class CalculatorUtilsMockTest {
 
     @Before
     fun setup(){
+        //se pasa por constructor para no tener uqe instanciarse
         calculatorUtils = CalculatorUtils(operations, listener)
     }
+
+    //verificacion si algun metodo es ejecutado o no (con interacciones):
 
     @Test
     fun cacl_callCheckOrResolve_noReturn(){
@@ -72,6 +75,8 @@ class CalculatorUtilsMockTest {
         //verificacion que no haya interacciones con operaciones
         Mockito.verifyNoInteractions(operations)
     }
+
+    //en este caso se simulan las clases internas para que obtengan un valor para las pruebas funcionen:
 
     @Test
     fun calc_callAddPoint_secondPoint_noReturns(){
