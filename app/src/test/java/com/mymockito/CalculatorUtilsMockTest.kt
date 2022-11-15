@@ -59,4 +59,17 @@ class CalculatorUtilsMockTest {
         }
         assertFalse(isCorrect)  //valor esperado
      }
+
+    @Test
+    fun calc_callAddPoint_firstPoint_noReturns(){
+        val operation = "3x2"
+        var isCorrect = false
+        calculatorUtils.addPoint(operation){
+            isCorrect = true
+        }
+        //valor esperado
+        assertTrue(isCorrect)
+        //verificacion que no haya interacciones con operaciones
+        Mockito.verifyNoInteractions(operations)
+    }
 }
