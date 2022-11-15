@@ -72,4 +72,23 @@ class CalculatorUtilsMockTest {
         //verificacion que no haya interacciones con operaciones
         Mockito.verifyNoInteractions(operations)
     }
+
+    @Test
+    fun calc_callAddPoint_secondPoint_noReturns(){
+        val operation = "3.5x2"
+        val operator = "x"
+        var isCorrect = false
+
+        //indicar cual es la respuesta que quiero
+        Mockito.`when`(operations.getOperator(operation)).thenReturn("x")
+        Mockito.`when`(operations.divideOperation(operator, operation)).thenReturn(arrayOf("3.5", "2"))
+
+        calculatorUtils.addPoint(operation){
+            isCorrect = true
+        }
+        //valor esperado + verificaciones (que se ejecuten las operaciones get/divide)
+        assertTrue(isCorrect)
+        Mockito.verify(operations).getOperator(operation)
+        Mockito.verify(operations).divideOperation(operator, operation)
+    }
 }
