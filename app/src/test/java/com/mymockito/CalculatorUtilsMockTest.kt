@@ -1,5 +1,6 @@
 package com.mymockito
 
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -34,5 +35,16 @@ class CalculatorUtilsMockTest {
         val isFromResolve = true
         calculatorUtils.checkOrResolve(operation, isFromResolve)
         Mockito.verify(operations).tryResolve(operation, isFromResolve, listener)
+    }
+
+    @Test
+    fun calc_callAddOperator_validSub_noReturn(){
+        val operator = "-"
+        val operation = "4+" //4+-3
+        var isCorrect = false
+        calculatorUtils.addOperator(operator, operation){
+            isCorrect = true
+        }
+        assertTrue(isCorrect)
     }
 }
